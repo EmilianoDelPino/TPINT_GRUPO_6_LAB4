@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form action="servletSeguro" method="get">
+<h1> Login </h1>
+<form action="servletUsuario" method="get">
 	Usuario: <input type="text" name="txtUsuario" readonly> <br>
 	Contraseña:  <input type="text" name="txtPassword"> <br>
 	<input type="submit" value="Aceptar" name="btnAceptar"> <br>
