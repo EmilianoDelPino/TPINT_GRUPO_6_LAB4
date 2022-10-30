@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1> Agregar Cliente </h1>
+<h1> Agregar Usuario </h1>
 <form action="servletUsuario" method="post">
 		Nombre: <input type="text" placeholder="Ingrese su Nombre" name="txtNombre" required/> <br>
 		Apellido: <input type="text" placeholder="Ingrese su Apellido" name="txtApellido" required/>  <br>
@@ -18,7 +18,7 @@
 			<option value="Masculino">Masculino</option>
 			<option value="Femenino">Femenino</option>
 		 </select> <br>
-		Nacionalidad: <input type="text" placeholder="Ingrese su Nacionalidad" name="txtPais" required/>  <br>
+		Nacionalidad: <input type="text" placeholder="Ingrese su Nacionalidad" name="txtNacionalidad" required/>  <br>
 		Fecha De Nacimiento: <input type="date" name="txtFechaNac" required/> <br>
 		Direccion: <input type="text" placeholder="Ingrese su Direccion" name="txtDireccion" required/>  <br>
 		Localidad: <input type="text" placeholder="Ingrese su Localidad" name="txtLocalidad" required/> <br>
@@ -52,8 +52,12 @@
 		Telefono: <input type="tel" placeholder="Ingrese su Telefono" name="txtTelefono" required/>  <br>
 		Usuario: <input type="text" placeholder="Ingrese su Usuario" name="txtUsuario" required/> <br>
 		Password: <input type="password" placeholder="Ingrese su Contraseña" name="txtPassword" required/>  <br>
-		<input type="submit" value="Guardar cliente"/>
+		<input type="submit" value="Guardar cliente" name= "btnGuardarCliente"/>
 </form>
-
+<%
+	if(request.getAttribute("btnGuardarCliente")!=null)
+	{%>
+		<%= request.getAttribute("btnGuardarCliente") %>
+	<%}%>
 </body>
 </html>

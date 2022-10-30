@@ -4,10 +4,13 @@ public class Usuario {
 	private String dni; //@ToDo Esta debería ser la PK en la BD para utilizar como FK en las tablas de CUENTAS y PRESTAMOS. Emi.
 	private String usuario;
 	private String password;
+	private String nombre;
+	private String apellido;
 	private String cuil;
 	private String sexo;
 	private String fechaNac;
 	private String direc;
+	private String nacionalidad;
 	private String localidad;
 	private String provincia;
 	private String mail;
@@ -17,25 +20,53 @@ public class Usuario {
 	//Constructors
 	
 	public Usuario() {}
-
-	public Usuario(String dni, String usuario, String password, String cuil, String sexo, String fechaNac, String direc,
-			String localidad, String provincia, String mail, String telefono, boolean activo) {
+	
+	public Usuario(String dni, String usuario, String password, String nombre, String apellido, String cuil,
+			String sexo, String fechaNac, String direc, String nacionalidad, String localidad, String provincia,
+			String mail, String telefono, boolean activo) {
 		super();
 		this.dni = dni;
 		this.usuario = usuario;
 		this.password = password;
+		this.nombre = nombre;
+		this.apellido = apellido;
 		this.cuil = cuil;
 		this.sexo = sexo;
 		this.fechaNac = fechaNac;
 		this.direc = direc;
+		this.nacionalidad = nacionalidad;
 		this.localidad = localidad;
 		this.provincia = provincia;
 		this.mail = mail;
 		this.telefono = telefono;
 		this.activo = activo;
 	}
-	
+
 	//Getters and Setters
+	public String getNacionalidad() {
+		return nacionalidad;
+	}
+
+	public void setNacionalidad(String dni) {
+		this.nacionalidad = nacionalidad;
+	}
+	
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String dni) {
+		this.apellido = apellido;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String dni) {
+		this.nombre = nombre;
+	}
+	
 	public String getDni() {
 		return dni;
 	}
