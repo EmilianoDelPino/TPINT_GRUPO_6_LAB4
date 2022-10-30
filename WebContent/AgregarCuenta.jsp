@@ -10,12 +10,12 @@
 	
 <h1> Agregar Cliente </h1>
 <form action="servletCuenta" method="post">
-	DNI: <input type="text" name="txtDni" /> <br>
-	Tipo: <select name="selectTipo"> </select>  <br>
-	Fecha de creacion: <input type="text" name="txtFecha" /> <br>
-	Numero de cuenta: <input type="text" name="txtNumero" />  <br>
-	CBU: <input type="text" name="txtCbu" /> <br>
-	Saldo: <input type="text" name="txtSaldo" />  <br>
+	DNI: <input type="text" placeholder="Ingrese su DNI" name="txtDni" required/> <br>
+	Tipo: <select name="selectTipo" required> </select>  <br>
+	Fecha de creacion: <input type="date" name="txtFecha" required/> <br>
+	Numero de cuenta: <input type="number" name="txtNumero" required/>  <br>
+	CBU: <input type="text" placeholder="Ingrese su CBU" name="txtCbu" required/> <br>
+	Saldo: <input type="number" placeholder="Ingrese su Saldo" name="txtSaldo" required/>  <br>
 	<input type="submit" value="Guardar cuenta"/>
 </form>
 	

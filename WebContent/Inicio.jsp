@@ -9,8 +9,8 @@
 <body>
 <h1> Login </h1>
 <form action="servletUsuario" method="get">
-	Usuario: <input type="text" name="txtUsuario" readonly> <br>
-	Contraseña:  <input type="text" name="txtPassword"> <br>
+	Usuario: <input type="text" name="txtUsuario" required> <br>
+	Contraseña:  <input type="password" name="txtPassword" required> <br>
 	<input type="submit" value="Aceptar" name="btnAceptar"> <br>
 	
 </form>
