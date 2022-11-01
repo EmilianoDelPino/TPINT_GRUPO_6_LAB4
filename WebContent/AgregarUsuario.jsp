@@ -55,9 +55,9 @@
 		<input type="submit" value="Guardar cliente" name= "btnGuardarCliente"/>
 </form>
 <%
-	if(request.getAttribute("btnGuardarCliente")!=null)
+	if(request.getAttribute("Datos")!=null)
 	{%>
-		<%= request.getAttribute("btnGuardarCliente") %>
+		<%= request.getAttribute("Datos") %>
 	<%}%>
 </body>
 </html>
