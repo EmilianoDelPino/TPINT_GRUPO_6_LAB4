@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Login to Bank</title>
+<link href="CSS/InicioStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1> Login </h1>
+<div>
 <form action="servletUsuario" method="get">
 	Usuario: <input type="text" name="txtUsuario" required> <br>
 	Contraseña:  <input type="password" name="txtPassword" required> <br>
 	<input type="submit" value="Aceptar" name="btnAceptar"> <br>
 	
 </form>
-
+</div>
 </body>
 </html>
