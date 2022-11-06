@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-<h1> Agregar Cliente </h1>
+<h1> Agregar Cuenta </h1>
 <form action="servletCuenta" method="post">
 	DNI: <input type="text" placeholder="Ingrese su DNI" name="txtDni" required/> <br>
 	Tipo: <select name="selectTipo" required> </select>  <br>
