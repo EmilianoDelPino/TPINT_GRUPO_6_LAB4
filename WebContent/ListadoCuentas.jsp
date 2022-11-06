@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	table, th, td
+	{
+		border: 1px solid black;
+	}
+</style>
 </head>
 <body>
 	<div class= list-cuentas>
@@ -20,9 +26,9 @@
 				<tr>
 					<th>CBU</th>
 					<th>CUIL</th>
-					<th>Tipo de Cuenta</th>
-					<th>Numero de Cuenta</th>
-					<th>Fecha de Creacion</th>
+					<th style="height: 28px; ">Tipo de Cuenta</th>
+					<th style="height: 37px; ">Numero de Cuenta</th>
+					<th style="width: 82px; ">Fecha de Creacion</th>
 					<th>Saldo</th>
 				</tr>
 			</thead>

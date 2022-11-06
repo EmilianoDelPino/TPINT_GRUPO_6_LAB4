@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	table, th, td
+	{
+		border: 1px solid black;
+	}
+</style>
 </head>
 <body>
 <div class="list-clientes">
@@ -25,7 +31,7 @@
 				<th>Apellido</th>
 				<th>Sexo</th>
 				<th>Nacionalidad</th>
-				<th>Fecha de Nacimiento</th>
+				<th style="height: 38px; ">Fecha de Nacimiento</th>
 				<th>Provincia</th>
 				<th>Localidad</th>
 				<th>Direccion</th>
