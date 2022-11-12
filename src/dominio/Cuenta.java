@@ -5,22 +5,26 @@ public class Cuenta {
 	private String num_cuenta;
 	private String cbu;
 	private String fecha_creacion;
-	private boolean admin; // Este campo es para setear el tipo de cuenta, si es true significa que es un Administrador, si no es un Usuario normal.
 	private Double saldo; //Lo cree con Double porque en la BD seguramente sea un money por lo tanto debería soportar un valor con "," .
+	private int idTipoCuenta;
+	private boolean estado;
 	
 	//Constructors
 	public Cuenta() {}
 
-	public Cuenta(String dni, String num_cuenta, String cbu, String fecha_creacion, boolean admin, Double saldo) {
+	public Cuenta(String dni, String num_cuenta, String cbu, String fecha_creacion, Double saldo, int idTipoCuenta,
+			boolean estado) {
 		super();
 		this.dni = dni;
 		this.num_cuenta = num_cuenta;
 		this.cbu = cbu;
 		this.fecha_creacion = fecha_creacion;
-		this.admin = admin;
 		this.saldo = saldo;
+		this.idTipoCuenta = idTipoCuenta;
+		this.estado = estado;
 	}
-	
+
+
 	//Getters and Setters
 	public String getDni() {
 		return dni;
@@ -54,14 +58,6 @@ public class Cuenta {
 		this.fecha_creacion = fecha_creacion;
 	}
 
-	public boolean isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-
 	public Double getSaldo() {
 		return saldo;
 	}
@@ -69,11 +65,27 @@ public class Cuenta {
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
+	
+	public int getIdTipoCuenta() {
+		return idTipoCuenta;
+	}
+
+	public void setIdTipoCuenta(int idTipoCuenta) {
+		this.idTipoCuenta = idTipoCuenta;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 
 	@Override
 	public String toString() {
 		return "Cuenta [dni=" + dni + ", num_cuenta=" + num_cuenta + ", cbu=" + cbu + ", fecha_creacion="
-				+ fecha_creacion + ", admin=" + admin + ", saldo=" + saldo + "]";
+				+ fecha_creacion + ", saldo=" + saldo + "]";
 	}
 
 	
