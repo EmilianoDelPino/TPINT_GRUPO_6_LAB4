@@ -20,96 +20,80 @@ USE `bdbanco` ;
 -- -----------------------------------------------------
 -- Table `bdbanco`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdbanco`.`usuarios` (
-  `dni` VARCHAR(8) NOT NULL,
-  `usuario` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  `apellido` VARCHAR(45) NOT NULL,
-  `cuil` VARCHAR(45) NOT NULL,
-  `sexo` CHAR(1) NULL DEFAULT NULL,
-  `fechaNac` DATE NULL DEFAULT NULL,
-  `direc` VARCHAR(45) NULL DEFAULT NULL,
-  `nacionalidad` VARCHAR(45) NULL DEFAULT NULL,
-  `localidad` VARCHAR(45) NULL DEFAULT NULL,
-  `provincia` VARCHAR(45) NULL DEFAULT NULL,
-  `mail` VARCHAR(45) NOT NULL,
-  `telefono` VARCHAR(45) NULL DEFAULT NULL,
-  `activo` BIT(1) NOT NULL DEFAULT b'1',
-  `admin` BIT(1) NOT NULL DEFAULT b'0',
-  PRIMARY KEY (`dni`),
-  UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC),
-  UNIQUE INDEX `cuil_UNIQUE` (`cuil` ASC),
-  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+CREATE TABLE `cuentas` (
+  `idCuenta` bigint(20) NOT NULL,
+  `dni` varchar(8) NOT NULL,
+  `numCuenta` bigint(20) NOT NULL,
+  `cbu` bigint(20) NOT NULL,
+  `fechaCreacion` date DEFAULT NULL,
+  `saldo` double DEFAULT NULL,
+  `tipo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCuenta`,`dni`),
+  KEY `idUsuario_idx` (`dni`),
+  KEY `tipo_idx` (`tipo`),
+  CONSTRAINT `idUsuario` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `tipoc` FOREIGN KEY (`tipo`) REFERENCES `tipocuenta` (`idTipoCuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
--- -----------------------------------------------------
--- Table `bdbanco`.`cuentas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdbanco`.`cuentas` (
-  `idCuenta` BIGINT(20) NOT NULL,
-  `dni` VARCHAR(8) NOT NULL,
-  `numCuenta` BIGINT(20) NOT NULL,
-  `cbu` BIGINT(20) NOT NULL,
-  `fechaCreacion` DATE NULL DEFAULT NULL,
-  `saldo` DOUBLE NULL DEFAULT NULL,
-  PRIMARY KEY (`idCuenta`, `dni`),
-  UNIQUE INDEX `numCuenta_UNIQUE` (`numCuenta` ASC),
-  UNIQUE INDEX `cbu_UNIQUE` (`cbu` ASC),
-  INDEX `idUsuario_idx` (`dni` ASC),
-  CONSTRAINT `idUsuario`
-    FOREIGN KEY (`dni`)
-    REFERENCES `bdbanco`.`usuarios` (`dni`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `bdbanco`.`movimientos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdbanco`.`movimientos` (
-  `idMov` BIGINT(20) NOT NULL,
-  `idCuenta` BIGINT(20) NOT NULL,
-  `tipo` INT(11) NULL DEFAULT NULL,
-  `fecha` DATE NULL DEFAULT NULL,
-  `detalle` VARCHAR(75) NULL DEFAULT NULL,
-  `importe` DOUBLE NULL DEFAULT NULL,
+CREATE TABLE `movimientos` (
+  `idMov` bigint(20) NOT NULL,
+  `idCuenta` bigint(20) NOT NULL,
+  `tipo` int(11) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `detalle` varchar(75) DEFAULT NULL,
+  `importe` double DEFAULT NULL,
   PRIMARY KEY (`idMov`),
-  INDEX `idCuenta_idx` (`idCuenta` ASC),
-  CONSTRAINT `idCuenta`
-    FOREIGN KEY (`idCuenta`)
-    REFERENCES `bdbanco`.`cuentas` (`idCuenta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+  KEY `idCuenta_idx` (`idCuenta`),
+  KEY `tipo_idx` (`tipo`),
+  CONSTRAINT `idCuenta` FOREIGN KEY (`idCuenta`) REFERENCES `cuentas` (`idCuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `tipo` FOREIGN KEY (`tipo`) REFERENCES `tipomoviemiento` (`idtipomoviemiento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
--- -----------------------------------------------------
--- Table `bdbanco`.`prestamos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdbanco`.`prestamos` (
-  `idPrestamo` BIGINT(20) NOT NULL,
-  `dniUsuario` VARCHAR(8) NOT NULL,
-  `fecha` DATE NULL DEFAULT NULL,
-  `plazo` INT(11) NULL DEFAULT NULL,
-  `cuotas` INT(11) NULL DEFAULT NULL,
-  `importeSolicitado` DOUBLE NULL DEFAULT NULL,
-  `importeFinal` DOUBLE NULL DEFAULT NULL,
-  `importeMes` DOUBLE NULL DEFAULT NULL,
+CREATE TABLE `prestamos` (
+  `idPrestamo` bigint(20) NOT NULL,
+  `dniUsuario` varchar(8) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `plazo` int(11) DEFAULT NULL,
+  `cuotas` int(11) DEFAULT NULL,
+  `importeSolicitado` double DEFAULT NULL,
+  `importeFinal` double DEFAULT NULL,
+  `importeMes` double DEFAULT NULL,
   PRIMARY KEY (`idPrestamo`),
-  INDEX `dniUsuario_idx` (`dniUsuario` ASC),
-  CONSTRAINT `dniUsuario`
-    FOREIGN KEY (`dniUsuario`)
-    REFERENCES `bdbanco`.`usuarios` (`dni`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+  KEY `dniUsuario_idx` (`dniUsuario`),
+  CONSTRAINT `dniUsuario` FOREIGN KEY (`dniUsuario`) REFERENCES `usuarios` (`dni`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `tipocuenta` (
+  `idTipoCuenta` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idTipoCuenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `tipomoviemiento` (
+  `idtipomoviemiento` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idtipomoviemiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `usuarios` (
+  `dni` varchar(8) NOT NULL,
+  `usuario` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellido` varchar(45) NOT NULL,
+  `cuil` varchar(45) NOT NULL,
+  `sexo` char(1) DEFAULT NULL,
+  `fechaNac` date DEFAULT NULL,
+  `direc` varchar(45) DEFAULT NULL,
+  `nacionalidad` varchar(45) DEFAULT NULL,
+  `localidad` varchar(45) DEFAULT NULL,
+  `provincia` varchar(45) DEFAULT NULL,
+  `mail` varchar(45) NOT NULL,
+  `telefono` varchar(45) DEFAULT NULL,
+  `activo` bit(1) NOT NULL DEFAULT b'1',
+  `admin` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`dni`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
