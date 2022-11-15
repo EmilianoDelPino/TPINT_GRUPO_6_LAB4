@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,7 +33,8 @@ public class servletUsuario extends HttpServlet {
 			u.setCuil(request.getParameter("txtCuil"));
 			u.setSexo(request.getParameter("Sexo"));
 			u.setNacionalidad(request.getParameter("txtNacionalidad"));
-			u.setFechaNac(request.getParameter("txtFechaNac"));
+			LocalDate a = LocalDate.parse(request.getParameter("txtFechaNac"));
+			u.setFechaNac(a);
 			u.setDirec(request.getParameter("txtDireccion"));
 			u.setLocalidad(request.getParameter("txtLocalidad"));
 			u.setProvincia(request.getParameter("Provincia"));
