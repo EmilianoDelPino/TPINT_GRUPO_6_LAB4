@@ -63,7 +63,10 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		{
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			Statement st = cn.createStatement();
-			String query = "Insert into usuarios(nombre,apellido) values ('"+usuario.getNombre()+"','"+usuario.getApellido()+"')";
+			java.sql.Date sqlDate = java.sql.Date.valueOf( usuario.getFechaNac() );
+			String query = "INSERT INTO `bdbanco`.`usuarios` (`dni`, `usuario`, `password`, `nombre`, `apellido`, `cuil`, `sexo`, `fechaNac`, `direc`, `nacionalidad`, `localidad`, `provincia`, `mail`, `telefono`, `activo`, `admin`) "
+					+ "		VALUES ('"+usuario.getDni()+"','"+usuario.getUsuario()+"','"+usuario.getPassword()+"','"+usuario.getNombre()+"','"+usuario.getApellido()+"','"+usuario.getCuil()+"','"+usuario.getSexo()+"','"+ sqlDate +"',"
+							+ "'"+usuario.getDirec()+"','"+usuario.getNacionalidad()+"','"+usuario.getLocalidad()+"','"+usuario.getProvincia()+"','"+usuario.getMail()+"','"+usuario.getTelefono()+"','"+usuario.getActivo()+"','"+usuario.getAdmin()+"')";
 			filas=st.executeUpdate(query);
 		}
 		catch(Exception e)
@@ -88,14 +91,27 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			conn = DriverManager.getConnection(host + dbName, user, pass);
 			Statement st = conn.createStatement();
 			
-			ResultSet rs = st.executeQuery("Select dni,nombre,apellido FROM usuarios");
+			ResultSet rs = st.executeQuery("SELECT dni,usuario,password,nombre,apellido,cuil,sexo,fechaNac,direc,nacionalidad,localidad,provincia,mail,telefono,activo,admin FROM usuarios");
 			
 			while(rs.next()){
 				
 				Usuario usuarioRs = new Usuario();
 				usuarioRs.setDni("dni");
+				usuarioRs.setUsuario(rs.getString("usuario"));
+				usuarioRs.setPassword(rs.getString("password"));
 				usuarioRs.setNombre(rs.getString("nombre"));
 				usuarioRs.setApellido(rs.getString("apellido"));
+				usuarioRs.setCuil(rs.getString("cuil"));
+				usuarioRs.setSexo(rs.getString("sexo"));
+				usuarioRs.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+				usuarioRs.setDirec(rs.getString("direc"));
+				usuarioRs.setNacionalidad(rs.getString("nacionalidad"));
+				usuarioRs.setLocalidad(rs.getString("localidad"));
+				usuarioRs.setProvincia(rs.getString("provincia"));
+				usuarioRs.setMail(rs.getString("mail"));
+				usuarioRs.setTelefono(rs.getString("telefono"));
+				usuarioRs.setActivo(rs.getInt("activo"));
+				usuarioRs.setAdmin(rs.getInt("admin"));
 				
 				lista.add(usuarioRs);
 			}
@@ -130,9 +146,21 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			resultado.next();
 			
 			usuario.setDni(resultado.getString(1));
-		    usuario.setNombre(resultado.getString(2));
-		    usuario.setApellido(resultado.getString(3));
-		    
+			usuario.setUsuario(resultado.getString(2));
+			usuario.setPassword(resultado.getString(3));
+			usuario.setNombre(resultado.getString(4));
+			usuario.setApellido(resultado.getString(5));
+			usuario.setCuil(resultado.getString(6));
+			usuario.setSexo(resultado.getString(7));
+			usuario.setFechaNac(resultado.getDate(8).toLocalDate());
+			usuario.setDirec(resultado.getString(9));
+			usuario.setNacionalidad(resultado.getString(10));
+			usuario.setLocalidad(resultado.getString(11));
+			usuario.setProvincia(resultado.getString(12));
+			usuario.setMail(resultado.getString(13));
+			usuario.setTelefono(resultado.getString(14));
+			usuario.setActivo(resultado.getInt(15));
+			usuario.setAdmin(resultado.getInt(16));
 		    con.close();
 		}
 		catch(Exception e)

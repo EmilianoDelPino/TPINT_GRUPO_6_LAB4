@@ -90,10 +90,10 @@ CREATE TABLE `usuarios` (
   `provincia` varchar(45) DEFAULT NULL,
   `mail` varchar(45) NOT NULL,
   `telefono` varchar(45) DEFAULT NULL,
-  `activo` bit(1) NOT NULL DEFAULT b'1',
-  `admin` bit(1) NOT NULL DEFAULT b'0',
+  `activo` int(11) NOT NULL DEFAULT '1',
+  `admin` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`dni`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

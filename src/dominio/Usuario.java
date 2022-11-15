@@ -1,5 +1,7 @@
 package dominio;
 
+import java.time.LocalDate;
+
 public class Usuario {
 	private String dni; //@ToDo Esta debería ser la PK en la BD para utilizar como FK en las tablas de CUENTAS y PRESTAMOS. Emi.
 	private String usuario;
@@ -8,15 +10,15 @@ public class Usuario {
 	private String apellido;
 	private String cuil;
 	private String sexo;
-	private String fechaNac;
+	private LocalDate fechaNac;
 	private String direc;
 	private String nacionalidad;
 	private String localidad;
 	private String provincia;
 	private String mail;
 	private String telefono;
-	private boolean activo; //Este campo se usará para hacer la baja lógica en la BD.
-	private boolean admin;
+	private Integer activo; //Este campo se usará para hacer la baja lógica en la BD.
+	private Integer admin;
 	
 	//Constructors
 	
@@ -24,8 +26,8 @@ public class Usuario {
 	
 
 	public Usuario(String dni, String usuario, String password, String nombre, String apellido, String cuil,
-			String sexo, String fechaNac, String direc, String nacionalidad, String localidad, String provincia,
-			String mail, String telefono, boolean activo, boolean admin) {
+			String sexo, LocalDate fechaNac, String direc, String nacionalidad, String localidad, String provincia,
+			String mail, String telefono, Integer activo, Integer admin) {
 		super();
 		this.dni = dni;
 		this.usuario = usuario;
@@ -44,6 +46,26 @@ public class Usuario {
 		this.activo = activo;
 		this.admin = admin;
 	}
+
+	public Integer getActivo() {
+		return activo;
+	}
+
+
+	public void setActivo(Integer activo) {
+		this.activo = activo;
+	}
+
+
+	public Integer getAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(Integer admin) {
+		this.admin = admin;
+	}
+
 
 	//Getters and Setters
 	public String getDni() {
@@ -116,13 +138,13 @@ public class Usuario {
 	}
 
 
-	public String getFechaNac() {
+	public LocalDate getFechaNac() {
 		return fechaNac;
 	}
 
 
-	public void setFechaNac(String fechaNac) {
-		this.fechaNac = fechaNac;
+	public void setFechaNac(LocalDate date) {
+		this.fechaNac = date;
 	}
 
 
@@ -183,26 +205,6 @@ public class Usuario {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
-
-	public boolean isAdmin() {
-		return admin;
-	}
-
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
 	}
 
 
