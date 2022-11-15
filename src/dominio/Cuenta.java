@@ -1,10 +1,12 @@
 package dominio;
 
+import java.time.LocalDate;
+
 public class Cuenta {
 	private String dni; //Este DNI tiene que ser FK de la tabla Usuarios, no puede haber una cuenta con un usuario inexistente.
 	private String num_cuenta;
 	private String cbu;
-	private String fecha_creacion;
+	private LocalDate fecha_creacion;
 	private Double saldo; //Lo cree con Double porque en la BD seguramente sea un money por lo tanto debería soportar un valor con "," .
 	private int idTipoCuenta;
 	private boolean estado;
@@ -12,7 +14,7 @@ public class Cuenta {
 	//Constructors
 	public Cuenta() {}
 
-	public Cuenta(String dni, String num_cuenta, String cbu, String fecha_creacion, Double saldo, int idTipoCuenta,
+	public Cuenta(String dni, String num_cuenta, String cbu, LocalDate fecha_creacion, Double saldo, int idTipoCuenta,
 			boolean estado) {
 		super();
 		this.dni = dni;
@@ -50,12 +52,12 @@ public class Cuenta {
 		this.cbu = cbu;
 	}
 
-	public String getFecha_creacion() {
+	public LocalDate getFecha_creacion() {
 		return fecha_creacion;
 	}
 
-	public void setFecha_creacion(String fecha_creacion) {
-		this.fecha_creacion = fecha_creacion;
+	public void setFecha_creacion(LocalDate localDate) {
+		this.fecha_creacion = localDate;
 	}
 
 	public Double getSaldo() {
