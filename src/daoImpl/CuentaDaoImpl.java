@@ -23,7 +23,7 @@ public class CuentaDaoImpl implements CuentaDao{
 		{
 			
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -50,7 +50,7 @@ public class CuentaDaoImpl implements CuentaDao{
 		{
 			
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,7 +77,7 @@ public class CuentaDaoImpl implements CuentaDao{
 		public ArrayList<Cuenta> obtenerCuentas() {
 
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -117,7 +117,7 @@ public class CuentaDaoImpl implements CuentaDao{
 		public Cuenta obtenerUnaCuenta(String num_cuenta)
 		{
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -154,7 +154,7 @@ public class CuentaDaoImpl implements CuentaDao{
 		public ArrayList<Cuenta> obtenerCuentasDeUser(String dni) {
 			
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daoImpl.UsuarioDaoImpl;
 import dominio.Usuario;
 
 @WebServlet("/servletUsuario")
@@ -22,7 +23,6 @@ public class servletUsuario extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//FALTA TODA LA LÓGICA DEL DAO
 		int filas=0;
 		if(request.getParameter("btnGuardarCliente")!= null)
 		{
@@ -31,7 +31,7 @@ public class servletUsuario extends HttpServlet {
 			u.setApellido(request.getParameter("txtApellido"));
 			u.setDni(request.getParameter("txtDni"));
 			u.setCuil(request.getParameter("txtCuil"));
-			u.setSexo(request.getParameter("Sexo"));
+			u.setSexo(request.getParameter("Sexo").charAt(0));
 			u.setNacionalidad(request.getParameter("txtNacionalidad"));
 			LocalDate a = LocalDate.parse(request.getParameter("txtFechaNac"));
 			u.setFechaNac(a);
@@ -42,9 +42,14 @@ public class servletUsuario extends HttpServlet {
 			u.setTelefono(request.getParameter("txtTelefono"));
 			u.setUsuario(request.getParameter("txtUsuario"));
 			u.setPassword(request.getParameter("txtPassword"));
+			u.setActivo(1);
+			u.setAdmin(1);
+			
+			UsuarioDaoImpl d = new UsuarioDaoImpl();
+			filas = d.agregarUsuario(u);
 		}
 				
-		request.setAttribute("Datos", filas);
+		request.setAttribute("Filas", filas);
 				
 		RequestDispatcher rd = request.getRequestDispatcher("/AgregarUsuario.jsp");
 		rd.forward(request, response);

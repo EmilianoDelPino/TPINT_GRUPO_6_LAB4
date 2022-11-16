@@ -14,7 +14,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "admin";
+	private String pass = "root";
 	private String dbName = "bdbanco";
 
 
@@ -23,7 +23,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	{
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	{
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,7 +79,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	public ArrayList<Usuario> obtenerUsuarios() {
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,7 +102,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				usuarioRs.setNombre(rs.getString("nombre"));
 				usuarioRs.setApellido(rs.getString("apellido"));
 				usuarioRs.setCuil(rs.getString("cuil"));
-				usuarioRs.setSexo(rs.getString("sexo"));
+				usuarioRs.setSexo(rs.getString("sexo").charAt(0));
 				usuarioRs.setFechaNac(rs.getDate("fechaNac").toLocalDate());
 				usuarioRs.setDirec(rs.getString("direc"));
 				usuarioRs.setNacionalidad(rs.getString("nacionalidad"));
@@ -130,7 +130,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	public Usuario obtenerUnUsuario(String dni)
 	{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,7 +151,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			usuario.setNombre(resultado.getString(4));
 			usuario.setApellido(resultado.getString(5));
 			usuario.setCuil(resultado.getString(6));
-			usuario.setSexo(resultado.getString(7));
+			usuario.setSexo(resultado.getString(7).charAt(0));
 			usuario.setFechaNac(resultado.getDate(8).toLocalDate());
 			usuario.setDirec(resultado.getString(9));
 			usuario.setNacionalidad(resultado.getString(10));

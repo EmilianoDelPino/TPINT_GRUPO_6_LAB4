@@ -9,14 +9,14 @@
 <body>
 
 <h1> Agregar Usuario </h1>
-<form action="servletUsuario" method="post">
+<form action="servletUsuario" method="get">
 		Nombre: <input type="text" placeholder="Ingrese su Nombre" name="txtNombre" required/> <br>
 		Apellido: <input type="text" placeholder="Ingrese su Apellido" name="txtApellido" required/>  <br>
 		DNI: <input type="text" placeholder="Ingrese su DNI" name="txtDni" required/> <br>
 		CUIL/CUIT: <input type="text" placeholder="Ingrese su CUIL" name="txtCuil" pattern="[0-9]{2}-[0-9]{8}-[0-9]{1}" required/> <small> Formato: 12-34567890-1 </small> <br>
 		Sexo: <select name="Sexo" required>
-			<option value="Masculino">Masculino</option>
-			<option value="Femenino">Femenino</option>
+			<option value="Masculino">m</option>
+			<option value="Femenino">f</option>
 		 </select> <br>
 		Nacionalidad: <input type="text" placeholder="Ingrese su Nacionalidad" name="txtNacionalidad" required/>  <br>
 		Fecha De Nacimiento: <input type="date" name="txtFechaNac" required/> <br>
@@ -55,9 +55,15 @@
 		<input type="submit" value="Guardar cliente" name= "btnGuardarCliente"/>
 </form>
 <%
-	if(request.getAttribute("Datos")!=null)
+	int filas=0;
+	if(request.getParameter("Filas")!= null)
+	{
+		filas= Integer.parseInt(request.getAttribute("Filas").toString());
+	}
+%>
+<%	if(filas==1)
 	{%>
-		<%= request.getAttribute("Datos") %>
-	<%}%>
+		Cliente agregado con éxito!
+	<%} %>
 </body>
 </html>

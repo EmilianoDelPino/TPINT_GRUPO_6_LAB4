@@ -20,7 +20,7 @@ public class debugger {
 		usuario.setNombre("12345");
 		usuario.setApellido("12345");
 		usuario.setCuil("12345");
-		usuario.setSexo("m");
+		usuario.setSexo('m');
 		usuario.setFechaNac(d);
 		usuario.setDirec("12345");
 		usuario.setNacionalidad("12345");

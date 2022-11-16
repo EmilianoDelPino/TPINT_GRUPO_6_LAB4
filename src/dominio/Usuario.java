@@ -9,7 +9,7 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private String cuil;
-	private String sexo;
+	private char sexo;
 	private LocalDate fechaNac;
 	private String direc;
 	private String nacionalidad;
@@ -26,7 +26,7 @@ public class Usuario {
 	
 
 	public Usuario(String dni, String usuario, String password, String nombre, String apellido, String cuil,
-			String sexo, LocalDate fechaNac, String direc, String nacionalidad, String localidad, String provincia,
+			char sexo, LocalDate fechaNac, String direc, String nacionalidad, String localidad, String provincia,
 			String mail, String telefono, Integer activo, Integer admin) {
 		super();
 		this.dni = dni;
@@ -128,13 +128,13 @@ public class Usuario {
 	}
 
 
-	public String getSexo() {
+	public char getSexo() {
 		return sexo;
 	}
 
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setSexo(char string) {
+		this.sexo = string;
 	}
 
 
